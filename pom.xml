@@ -97,6 +97,13 @@
                         <exclude>checkstyle:.*XmlConfigApplication.*</exclude>
                     </excludes>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                        <version>1.2</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <goals>
