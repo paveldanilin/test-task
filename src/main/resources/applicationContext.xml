@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="intValueAvg" class="org.example.testtask.service.AggAvgImpl" />
+    <bean id="intValueSum" class="org.example.testtask.service.AggSumImpl" />
+    <bean id="intValueMin" class="org.example.testtask.service.AggMinImpl" />
+    <bean id="intValueMax" class="org.example.testtask.service.AggMaxImpl" />
+
+    <util:map id="intValueAggMap" map-class="java.util.HashMap" key-type="java.lang.String" value-type="org.example.testtask.service.AbstractIntValueAggService">
+        <entry key="avg" value-ref="intValueAvg"/>
+        <entry key="sum" value-ref="intValueSum"/>
+        <entry key="min" value-ref="intValueMin"/>
+        <entry key="max" value-ref="intValueMax"/>
+    </util:map>
+
+    <bean id="intValueService" class="org.example.testtask.service.IntValueImpl">
+        <constructor-arg name="repository" ref="intValueCrudRepository" />
+        <property name="aggregators" ref="intValueAggMap"/>
+    </bean>
+
+</beans>
