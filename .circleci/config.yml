@@ -8,4 +8,4 @@ jobs:
 
     steps:
       - checkout
-      - run: ./mvnw clean install
+      - run: ./mvn clean install
